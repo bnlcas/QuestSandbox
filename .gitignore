@@ -75,3 +75,5 @@ crashlytics-build.properties
 
 /Oculus
 /XR
+
+.DS_Store
