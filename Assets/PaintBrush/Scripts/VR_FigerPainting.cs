@@ -16,12 +16,16 @@ namespace FingerPainting
         Texture _baseTex;
 
         [SerializeField]
-        Transform _indexFingerTip;
+        OVRSkeleton _rightHand;
 
-        [SerializeField]
-        Transform _indexKnuckle;
+        Vector3 _indexFingerTip;
 
-        private const float DRAWING_DISTANCE = 0.04f;
+        Vector3 _indexKnuckle;
+
+        //[SerializeField]
+        //GameObject _debugSphere;
+
+        private const float DRAWING_DISTANCE = 0.05f;
 
         private bool _inContact = false;
 
@@ -33,8 +37,12 @@ namespace FingerPainting
 
         private void Update()
         {
-            Vector3 rayOrigin = _indexKnuckle.position;
-            Vector3 rayDirection = _indexFingerTip.position - _indexKnuckle.position;
+            _indexFingerTip = _rightHand.Bones[8].Transform.position;
+            _indexKnuckle = _rightHand.Bones[7].Transform.position;
+
+            //_debugSphere.transform.position = _indexKnuckle;
+            Vector3 rayOrigin = _indexKnuckle;
+            Vector3 rayDirection = _indexFingerTip - _indexKnuckle;
             Ray fingerRay = new Ray(rayOrigin, rayDirection);
             RaycastHit hit;
 
@@ -42,7 +50,7 @@ namespace FingerPainting
             {
                 if(_inContact)
                 {
-
+                    UpdateTouch(hit.textureCoord);
                 }
                 else
                 {

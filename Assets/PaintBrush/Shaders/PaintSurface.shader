@@ -15,6 +15,8 @@ Shader "Unlit/PaintSurface"
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
+        ZTest Always
+
         Pass
         {
             CGPROGRAM
@@ -49,6 +51,7 @@ Shader "Unlit/PaintSurface"
             
             sampler2D _MainTex;
             float4 _MainTex_ST;
+
 
             v2f vert (appdata v)
             {
