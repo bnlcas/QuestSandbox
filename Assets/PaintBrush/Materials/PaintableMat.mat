@@ -84,13 +84,13 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _brushSize: 0.1
+    - _brushSize: 0.037851952
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _brushColor: {r: 0.2830189, g: 0.076094694, b: 0.22730851, a: 1}
+    - _brushColor: {r: 0.7782759, g: 0.22320175, b: 0.12981737, a: 1}
     - _brushPosition: {r: -1, g: -1, b: -1, a: 1}
     - _maskRegion: {r: 0.5815815, g: 0.82732403, b: 0, a: 0}
     - _maskRegionCoord: {r: 0.37479186, g: 0.5145305, b: 0, a: 0}
-    - _maskSampleCoord: {r: 0.38160425, g: 0.28386825, b: 0, a: 0}
+    - _maskSampleCoord: {r: 0.14354825, g: 0.56078315, b: 0, a: 0}
   m_BuildTextureStacks: []

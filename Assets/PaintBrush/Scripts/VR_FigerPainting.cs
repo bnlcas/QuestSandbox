@@ -46,7 +46,7 @@ namespace FingerPainting
             Ray fingerRay = new Ray(rayOrigin, rayDirection);
             RaycastHit hit;
 
-            if(Physics.Raycast(rayOrigin, rayDirection, out hit, DRAWING_DISTANCE))
+            if(Physics.Raycast(rayOrigin, rayDirection, out hit, DRAWING_DISTANCE) && hit.collider.gameObject == this.gameObject)
             {
                 if(_inContact)
                 {

@@ -65,8 +65,8 @@ Shader "Unlit/SLSpectrum"
                 float3 hsv = float3(_hue, i.uv.x, i.uv.y);
                 float4 rgb = float4(HSVToRGB(hsv), 1.0);
 
-
-                float indicatorMix = 1.0 - step(0.05, distance(i.uv, _indicatorUV));
+                float indicatorDist = distance(i.uv, _indicatorUV);
+                float indicatorMix = (1.0 - step(0.05, indicatorDist)) * step(0.035, indicatorDist);
                 float4 slColor_wIndicator = lerp(rgb, _indicatorColor, indicatorMix);
                 return slColor_wIndicator;
             }

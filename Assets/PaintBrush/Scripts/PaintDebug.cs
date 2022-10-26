@@ -31,7 +31,7 @@ namespace FingerPainting
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+                if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity) && hit.collider.gameObject == this.gameObject)
                 {
                     Vector4 maskPos = new Vector4(hit.textureCoord.x, hit.textureCoord.y,0,0);
                     _paintMaterial.SetVector("_maskSampleCoord", maskPos);
@@ -43,7 +43,7 @@ namespace FingerPainting
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+                if(Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity) && hit.collider.gameObject == this.gameObject)
                 {
                     Vector4 normPos = new Vector4(hit.textureCoord.x, hit.textureCoord.y,0,0);
                     _paintMaterial.SetVector("_brushPosition", normPos);
