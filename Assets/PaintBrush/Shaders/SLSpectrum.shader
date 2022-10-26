@@ -4,6 +4,9 @@ Shader "Unlit/SLSpectrum"
     {
         _MainTex ("Texture", 2D) = "white" {}
        _hue ("Hue", Float) = 0.1
+
+        _indicatorColor ("Indicator Color", Color) = (1,0,0,1)
+        _indicatorUV ("Position", Vector) = (0,0,0,0)
     }
     SubShader
     {
@@ -44,6 +47,9 @@ Shader "Unlit/SLSpectrum"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float2 _indicatorUV = (0.5,0.5);
+            float4 _indicatorColor = (0.9,0,0,1);
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -57,9 +63,12 @@ Shader "Unlit/SLSpectrum"
             {
                 // sample the texture
                 float3 hsv = float3(_hue, i.uv.x, i.uv.y);
-                float3 rgb = HSVToRGB(hsv);
-                fixed4 col =float4(rgb.r, rgb.g, rgb.b, 1.0);
-                return col;
+                float4 rgb = float4(HSVToRGB(hsv), 1.0);
+
+
+                float indicatorMix = 1.0 - step(0.05, distance(i.uv, _indicatorUV));
+                float4 slColor_wIndicator = lerp(rgb, _indicatorColor, indicatorMix);
+                return slColor_wIndicator;
             }
             ENDCG
         }

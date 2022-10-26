@@ -3,7 +3,9 @@ Shader "Unlit/SliderIndicator"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _indicatorColor ("Indicator Color", Color) = (0,0,1,1)
+        _indicatorColor ("Indicator Color", Color) = (1,0,0,1)
+        _baseColor ("Base Color", Color) = (1,1,1,1)
+
         _indicatorUV ("Position", Vector) = (0,0,0,0)
 
     }
@@ -39,8 +41,8 @@ Shader "Unlit/SliderIndicator"
             float4 _MainTex_ST;
 
             float2 _indicatorUV = (0.5,0.5);
-            float4 _indicatorColor = (0,0,1,1);
-            float4 _baseColor = (0.1,0.1,0.1,1.0);
+            float4 _indicatorColor = (0.9,0,0,1);
+            float4 _baseColor = (0.9, 0.9, 0.9, 1.0);
 
             v2f vert (appdata v)
             {
@@ -57,10 +59,9 @@ Shader "Unlit/SliderIndicator"
                 //fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
+                float mix = step(_indicatorUV.x, i.uv) * (1.0 - step(_indicatorUV.x + 0.05, i.uv));
                 
-                float mix = step(0.5, distance(i.uv, float2(_indicatorUV.x, 0.5)));
-
-                float4 col = lerp(_indicatorColor, _baseColor, mix);
+                float4 col = lerp(_baseColor, _indicatorColor, mix);
                 return col;
             }
             ENDCG

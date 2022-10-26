@@ -3,6 +3,9 @@ Shader "Unlit/HueSpectrum"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _indicatorColor ("Indicator Color", Color) = (0.8,0,0,1)
+        _indicatorUV ("Position", Vector) = (0,0,0,0)
+
     }
     SubShader
     {
@@ -41,6 +44,9 @@ Shader "Unlit/HueSpectrum"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _indicatorColor = (0.8,0,0,1);
+            float2 _indicatorUV = (0.5,0.5);
+
 
             v2f vert (appdata v)
             {
@@ -54,14 +60,10 @@ Shader "Unlit/HueSpectrum"
             fixed4 frag (v2f i) : SV_Target
             {
                 float3 hsv = float3(i.uv.y, 0.9, 0.9);
-                float3 rgb = HSVToRGB(hsv);
-                // sample the texture
-                //float4 col = (rgb,1.0);
-                //tex2D(_MainTex, i.uv);
-                // apply fog
+                float4 rgb = float4(HSVToRGB(hsv), 1);
 
-                //UNITY_APPLY_FOG(i.fogCoord, col);
-                return float4(rgb.r, rgb.g, rgb.b, 1);
+                float indicatorMix = step(_indicatorUV.y, i.uv.y) * (1.0 - step(_indicatorUV.y + 0.05, i.uv.y));
+                return lerp(rgb, _indicatorColor, indicatorMix);
             }
             ENDCG
         }
