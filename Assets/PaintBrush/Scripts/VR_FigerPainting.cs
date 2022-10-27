@@ -22,10 +22,10 @@ namespace FingerPainting
 
         Vector3 _indexKnuckle;
 
-        //[SerializeField]
-        //GameObject _debugSphere;
+        [SerializeField]
+        GameObject _brushIndicatorSphere;
 
-        private const float DRAWING_DISTANCE = 0.05f;
+        private const float DRAWING_DISTANCE = 0.06f;
 
         private bool _inContact = false;
 
@@ -40,7 +40,6 @@ namespace FingerPainting
             _indexFingerTip = _rightHand.Bones[8].Transform.position;
             _indexKnuckle = _rightHand.Bones[7].Transform.position;
 
-            //_debugSphere.transform.position = _indexKnuckle;
             Vector3 rayOrigin = _indexKnuckle;
             Vector3 rayDirection = _indexFingerTip - _indexKnuckle;
             Ray fingerRay = new Ray(rayOrigin, rayDirection);
@@ -63,6 +62,9 @@ namespace FingerPainting
                 DrawOffscreen();
                 _inContact = false;
             }
+
+            _brushIndicatorSphere.transform.position = rayOrigin + rayDirection.normalized * DRAWING_DISTANCE;
+
         }
 
         private void InitializeTouch(Vector2 touchPosition)

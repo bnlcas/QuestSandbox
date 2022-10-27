@@ -10,6 +10,9 @@ namespace FingerPainting
         GameObject _brushIndicator;
 
         [SerializeField]
+        Material _brushIndicatorMaterial;
+
+        [SerializeField]
         Material _svSliderMaterial;
 
         [SerializeField]
@@ -28,7 +31,7 @@ namespace FingerPainting
 
         Vector3 _indexKnuckle;
 
-        private const float DRAWING_DISTANCE = 0.05f;
+        private const float DRAWING_DISTANCE = 0.06f;
 
         public Color BrushColor { get; private set; }
 
@@ -40,7 +43,7 @@ namespace FingerPainting
         [SerializeField]
         private float _maxSize = 0.6f;
 
-        private const float Size_Indicator_Scaling = 0.2f;
+        private const float Size_Indicator_Scaling = 0.5f;
 
         private Vector2 _svSetting = new Vector2(0.9f, 0.7f);
 
@@ -110,7 +113,7 @@ namespace FingerPainting
         private void UpdateBrushColor()
         {
             BrushColor = Color.HSVToRGB(_hueSetting,_svSetting.x, _svSetting.y);
-            _brushIndicator.GetComponent<Renderer>().material.color = BrushColor;
+            _brushIndicatorMaterial.color = BrushColor;
             _fingerPaintingMaterial.SetVector("_brushColor", BrushColor);
         }
 
