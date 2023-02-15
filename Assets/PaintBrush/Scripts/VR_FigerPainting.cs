@@ -25,7 +25,7 @@ namespace FingerPainting
         [SerializeField]
         GameObject _brushIndicatorSphere;
 
-        private const float DRAWING_DISTANCE = 0.06f;
+        private const float DRAWING_DISTANCE = 0.07f;
 
         private bool _inContact = false;
 
