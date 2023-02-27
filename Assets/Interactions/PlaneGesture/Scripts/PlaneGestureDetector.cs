@@ -22,6 +22,9 @@ namespace PlaneGesture
         [SerializeField]
         PlaneGestureFeedback _feedbackPlane;
 
+        [SerializeField]
+        GameObject _trackingPlane;
+
         private const float APPEAR_THRESHOLD = 1.4f;
         private const int APPEAR_FRAMES = 20;
 
@@ -34,6 +37,10 @@ namespace PlaneGesture
 
         private float CalculateHeightVariance()
         {
+            //if(!_rightHand.IsTracked || !_leftHand.IsTracked)
+           // {
+             //   return Mathf.Infinity;
+            //}
             float tally = 0.0f;
             float squareTally = 0.0f;
             float count = (float) _rightHand.Bones.Count +  (float) _leftHand.Bones.Count;
@@ -99,24 +106,26 @@ namespace PlaneGesture
         {
             _appearFrameNumber = 0;
             _hasAppeared = false;
-            _feedbackPlane.ShowFeedback(false);
+            //_feedbackPlane.ShowFeedback(false);
         }
 
         private void UpdateFeedback()
         {
-            _feedbackPlane.SetFeedbackCenter(Vector3.Lerp(GetRightHandCenter(), GetLeftHandCenter(), 0.5f));
+            Vector3 planeCenter = Vector3.Lerp(GetRightHandCenter(), GetLeftHandCenter(), 0.5f) - 0.03f * Vector3.up;
+            _feedbackPlane.SetFeedbackCenter(planeCenter);
             _feedbackPlane.SetFeedbackSize(Vector3.Distance(GetRightHandCenter(), GetLeftHandCenter()));
         }
 
         private void Start()
         {
             PlaneGestureDetected= new UnityEvent();
+            _feedbackPlane.ShowFeedback(false);
         }
 
         private void Update()
         {
             float handYVariance = CalculateHeightVariance();
-            _debug.text = handYVariance.ToString();
+            //_debug.text = handYVariance.ToString();
             if(!_hasAppeared)
             {
                 _hasAppeared = CheckAppearance(handYVariance);
@@ -124,11 +133,14 @@ namespace PlaneGesture
                 {
                     DeployFeedback();
                 }
+                _debug.text = "Not Appeared";
             }
             else
             {
                 if(handYVariance < DEPLOY_THRESHOLD)
                 {
+                    _debug.text = "Feedback time";
+
                     UpdateFeedback();
                 }
                 else
@@ -137,8 +149,11 @@ namespace PlaneGesture
                     if(travelDist > DEPLOY_DISTANCE)
                     {
                         PlaneGestureDetected.Invoke();
+                        //_trackingPlane.
                     }
                     HideFeedback();
+
+                    _debug.text = "Event Fires";
 
                 }                
             }

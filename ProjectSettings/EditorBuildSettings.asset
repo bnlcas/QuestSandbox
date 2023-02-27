@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/360Viewer/Scenes/360Viewer.unity
     guid: 6129b35628ce043a5876670c2ec24d8b
+  - enabled: 0
+    path: Assets/Oculus/Interaction/Samples/Scenes/Examples/HandGrabExamples.unity
+    guid: 39ae0e546b9edc0408d3b11c6a7c2814
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3faeedfc0c0a54917876f28d42ba0122, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0a466eefc3bec420aa59dcc887314857, type: 2}

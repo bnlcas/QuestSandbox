@@ -31,7 +31,7 @@ namespace PinchCenter
             Vector3 rightCenter = _rightHand.PointerPose.position;
             Vector3 leftCenter = _leftHand.PointerPose.position;
 
-            Vector3 pinchCenter = Vector3.Lerp(rightCenter, leftCenter, 0.5f) - 0.03f * Vector3.up;
+            Vector3 pinchCenter = Vector3.Lerp(rightCenter, leftCenter, 0.5f) - 0.04f * Vector3.up;
             Vector3 pinchRight = (rightCenter - leftCenter).normalized;
             Vector3 pinchForward = Vector3.Cross(Vector3.up, pinchRight);
 
