@@ -111,9 +111,15 @@ namespace PlaneGesture
 
         private void UpdateFeedback()
         {
-            Vector3 planeCenter = Vector3.Lerp(GetRightHandCenter(), GetLeftHandCenter(), 0.5f) - 0.03f * Vector3.up;
+            Vector3 rightCenter = GetRightHandCenter();
+            Vector3 leftCenter = GetLeftHandCenter();
+            Vector3 planeCenter = Vector3.Lerp(rightCenter, leftCenter, 0.5f) - 0.03f * Vector3.up;
             _feedbackPlane.SetFeedbackCenter(planeCenter);
             _feedbackPlane.SetFeedbackSize(Vector3.Distance(GetRightHandCenter(), GetLeftHandCenter()));
+            
+            Vector3 planeForward = Vector3.Cross(rightCenter - leftCenter, Vector3.up);
+            Quaternion planeOrientation = Quaternion.LookRotation(planeForward, Vector3.up);
+            _feedbackPlane.SetFeedbackOrientation(planeOrientation);
         }
 
         private void Start()

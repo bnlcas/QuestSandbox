@@ -1684,7 +1684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectionSurfaceType: 0
-  overlayType: 1
+  overlayType: 2
   compositionDepth: 0
   hidden: 0
   overridePerLayerColorScaleAndOffset: 0
@@ -1723,9 +1723,9 @@ MonoBehaviour:
   colorMapEditorContrast: 0
   colorMapEditorBrightness: 0
   colorMapEditorPosterize: 0
-  textureOpacity_: 0.59
-  edgeRenderingEnabled_: 1
-  edgeColor_: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0}
+  textureOpacity_: 1
+  edgeRenderingEnabled_: 0
+  edgeColor_: {r: 1, g: 1, b: 1, a: 1}
   colorMapType: 0
 --- !u!1 &1643492564
 GameObject:
