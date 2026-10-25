@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/DepthVideoPlayer/Scenes/DepthPlayerSample.unity
     guid: e738de878eb9742999611088e3ab9c82
-  - enabled: 1
+  - enabled: 0
     path: Assets/PaintBrush/Scenes/PaintbrushDemo.unity
     guid: a89c45e6aa2e64a0a9bdb7c19cef84fc
   - enabled: 0
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/Interaction/Samples/Scenes/Examples/HandGrabExamples.unity
     guid: 39ae0e546b9edc0408d3b11c6a7c2814
+  - enabled: 1
+    path: Assets/FencePainting/Scenes/FencePainter.unity
+    guid: 4c1181c49b75b4ec79553c1336e84dd7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3faeedfc0c0a54917876f28d42ba0122, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0a466eefc3bec420aa59dcc887314857, type: 2}
